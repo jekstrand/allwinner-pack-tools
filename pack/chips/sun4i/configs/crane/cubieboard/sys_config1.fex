@@ -424,7 +424,7 @@ disp_init_enable         = 1
 disp_mode                = 0
 
 screen0_output_type      = 3
-screen0_output_mode      = 4
+screen0_output_mode      = 5
 
 screen1_output_type      = 1
 screen1_output_mode      = 4
