@@ -1,6 +1,7 @@
-;---------------------------------------------------------------------------------------------------------
-; 说明： 脚本中的字符串区分大小写，用户可以修改"="后面的数值，但是不要修改前面的字符串
-;---------------------------------------------------------------------------------------------------------
+;-----------------------------------------------------------------------------------------
+; Description: script string is case sensitive, the user can modify the "="
+; followed by the value, but do not modify the front of the string
+;-----------------------------------------------------------------------------------------
 
 [platform]
 chip=0x02000000
@@ -15,43 +16,44 @@ jtag        = 1
 restore = 0
 
 ;------------------------------------------------------------------------------------------
-;                                      系统配置
+; System configuration
 ;------------------------------------------------------------------------------------------
 
 
 
 
 ;--------------------------------------------------------------------------------------------------
-;                                   固件下载参数配置
+; Firmware download configuration parameters
 ;--------------------------------------------------------------------------------------------------
 ;-----------------------------------------------------------------------------------------
-;										分区配置管理
+; Partition configuration management
 ;-----------------------------------------------------------------------------------------
 ;****************************************************
-;    mbr的大小, 以Kbyte为单位
+; Mbr size in Kbyte units
 ;****************************************************
 [mbr]
 size = 16384
 
 ;********************************************************************************************************
-;                                              分区配置
+; Partition configuration
 ;
 ;  [part_num]
-;      num     = 2              ; //有2个分区
-;      part0   = partiton0      ; //part0的信息存放在partiton0里
-;      parti   = partitoni      ; //parti的信息存放在partitoni里
+;      num     = 2              ; // There are two partitions
+;      part0   = partiton0      ; // part0 where the information is stored in partiton0
+;      parti   = partitoni      ; // parti where the information is stored in partitoni
 ;
-;  partition 定义范例:
-;    [partition2]               ; //第2个分区
-;    class_name  = DISK         ; //设备类名, 如："DISK"。
-;    name        = USERFS2      ; //设备节点名.
-;    size_hi     = 0            ; //分区大小的高32位, 单位: Kbyte.
-;    size_lo     = 32           ; //分区大小的低32位, 单位: Kbyte.
+;  partition example definitions:
+;    [partition2]               ; // the first two partitions
+;    class_name  = DISK         ; // device class name, such as: "DISK".
+;    name        = USERFS2      ; // device node name.
+;    size_hi     = 0            ; // partition size high 32, unit: Kbyte.
+;    size_lo     = 32           ; // partition size, low 32, unit: Kbyte.
 ;
-; 注：1、name唯一, 不允许同名
-;     2、class_name和name最大12个字符
-;     3、size_hi + size_lo = 0, 表示此分区不存在
-;     4、为了安全和效率考虑，分区大小最好保证为16M字节的整数倍
+; Note: 1, name unique, does not allow the same name
+;       2, class_name and name up to 12 characters
+;       3, size_hi + size_lo = 0, which means that this partition does not exist
+;       4, for safety and efficiency considerations, the best guarantee for the partition
+;          size 16M-byte integer multiple
 ;********************************************************************************************************
 [part_num]
 num     = 8
@@ -129,20 +131,21 @@ num     = 8
     ro          = 0
 
 ;********************************************************************************************************************
-;                     固件包下载位置 ： 把某个固件包下载到指定分区, 下载次数最大为7次
+; The firmware package download location: Put a firmware package is downloaded to the specified partition,
+; up to seven times Downloads
 ;
-;[downloadi]                                //固件包0下载位置
-;    part_name      = SYSDATAFS             //分区名
-;    pkt_name       = ROOTFS_000000000      //固件包名称
-;    verify_file    = VERIFY_000000000      //校验文件名称
+;[downloadi]                                // firmware package download location 0
+;    part_name      = SYSDATAFS             // partition name
+;    pkt_name       = ROOTFS_000000000      // firmware package name
+;    verify_file    = VERIFY_000000000      // Check the file name
 ;
-; 注：1、 downloadi 表示第i次下载固件, download 唯一, 请不要随意修改
-;     2、 part_num 为分区号, 即固件下载的位置
-;     3、 pkt_name 固件包名称. 最大长度为16byte, 且名称固定. 可参考"..\\ePDK\workspace\suni\liveclick\image.cfg"
-;     4、 verify_file 为校验文件名称. 可参考"..\\ePDK\workspace\suni\liveclick\image.cfg"
-;     5、 pkt_name 内容不填, 表示本次下载取消.  verify_file内容不填, 表示不需要校验.
+; Note: 1, downloadi represents the i download the firmware, download the only, please do not arbitrarily modify
+;       2, part_num for the partition number, ie the location of the firmware download
+;       3, pkt_name firmware package name. Maximum length is 16byte, and the name is fixed. Refer to the "..\\ePDK\workspace\suni\liveclick\image.cfg"
+;       4, verify_file to check the file name. Refer to the "..\\ePDK\workspace\suni\liveclick\image.cfg"
+;       5, pkt_name content does not fill, which means that the download canceled. Verify_file content does not fill, which means that no parity.
 ;
-; 如：要把固件包zdisk.img, 下载在到SYSDATAFS分区里。其配置为：
+; Such as: should the firmware package zdisk.img, download in the SYSDATAFS partition. Its configuration is:
 ; [download0]
 ;      part_name   = SYSDATAFS
 ;      pkt_name     = ROOTFS_000000000
