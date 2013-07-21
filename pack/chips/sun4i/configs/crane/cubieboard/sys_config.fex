@@ -99,7 +99,7 @@ num     = 8
     class_name  = DISK
     name        = data
     size_hi     = 0
-    size_lo     = 262144
+    size_lo     = 3194880
     user_type   = 1
     ro          = 0
 
